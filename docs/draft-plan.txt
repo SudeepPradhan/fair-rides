@@ -1,0 +1,31 @@
+ore Functionality:
+1. Registration/Login.
+2. Ride posts.
+  i) Likes.
+  ii) Comments.
+3. Ask Rides.
+  i) Likes.
+  ii) Comments.
+4. Search Feature(On they way route suggestion).(Masud)
+
+
+
+Tasks:
+1. Layout Design.
+2. Page Design.
+3. Form Design.
+4. Form Validation (Client Side).
+5. Form Validation (Server Side).
+6. Security (Client & Server Side). (Masud)
+7. REST API Endpoint.
+8. Service Layer.
+9. Domain/Model Layer.
+10. Ajax Module Pattern.
+11. Infinite Scroll Implementation.
+12. 3rd Party API Integration using weather data(json).
+13. Google Map Integration.
+14. Git/Bitbucket setup/integration. (Masud)
+15. Custom Tag Implementation.
+
+
+
