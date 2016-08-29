@@ -66,5 +66,21 @@ public class UserService {
 			return null;
 		}
 	}
+	
+	public User getUserByEmail(String email) {
+		Query query = (Query) HibernateUtil
+				.getSessionFactory()
+				.getCurrentSession()
+				.createQuery(
+						"SELECT * FROM USER where email='" + email
+								+ "'  ");
+		List<User> results = query.getResultList();
+
+		if (results.size() == 1) {
+			return results.get(0);
+		} else {
+			return null;
+		}
+	}
 
 }
