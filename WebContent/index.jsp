@@ -8,13 +8,13 @@
 
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/rides.js"></script>
 </head>
 <body>
 
 
 <div id="output">Default Output</div>
 
+<script type="text/javascript" src="js/rides.js"></script>
 
 <script>
 //load jQuery
