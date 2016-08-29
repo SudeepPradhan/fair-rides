@@ -28,11 +28,11 @@ public class RegisterController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		UserService userService = new UserService();
-		User user = new User();
+		
 
 		if (request.getParameter("email") != null
 				&& request.getParameter("password") != null) {
-
+			User user = new User();
 			user.setFullname(request.getParameter("fullname"));
 			user.setEmail(request.getParameter("email"));
 			user.setGender(Integer.valueOf(request.getParameter("gender")));
