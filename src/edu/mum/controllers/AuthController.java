@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,14 +24,25 @@ public class AuthController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		String action = request.getParameter("action");
+		if (action != null && action == "logout") {
+			HttpSession sesssion = request.getSession();
+			sesssion.invalidate();
+ 			Map<String, String> map = new HashMap<>();
+			map.put("error", "");
+			map.put("message", "Successfully logged out");
+			ObjectWriter ow = new ObjectMapper().writer()
+					.withDefaultPrettyPrinter();
+			String json = ow.writeValueAsString(map);
+			response.getWriter().println(json);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		UserService us = new UserService();
-		
+
 		HttpSession session = request.getSession();
 		String userId = String.valueOf(session.getAttribute("userId"));
 		String email = String.valueOf(session.getAttribute("email"));
@@ -41,9 +53,10 @@ public class AuthController extends HttpServlet {
 			String json = ow.writeValueAsString(user);
 			response.getWriter().println(json);
 		} else {
-			Map<String,String> map = new HashMap<>();
-			map.put("error","Unauthorized");
-			map.put("message","Sorry you are not authorized to access this application");
+			Map<String, String> map = new HashMap<>();
+			map.put("error", "Unauthorized");
+			map.put("message",
+					"Sorry you are not authorized to access this application");
 			ObjectWriter ow = new ObjectMapper().writer()
 					.withDefaultPrettyPrinter();
 			String json = ow.writeValueAsString(map);
@@ -51,4 +64,5 @@ public class AuthController extends HttpServlet {
 		}
 	}
 
+	 
 }
