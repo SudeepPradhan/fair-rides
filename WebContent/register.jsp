@@ -64,7 +64,7 @@
     <div class="col-sm-10">
       <input type="text" class="form-control" class="bootstrap-datepicker" id="BirthYear" placeholder="birth year"/>
     </div>
-  </div>
+  </div> 
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10"> 
