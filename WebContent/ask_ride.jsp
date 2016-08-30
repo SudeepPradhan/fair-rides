@@ -1,100 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<h2>Ride ask page</h2>
 
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
-
-
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-
-
-
-
-<form class="form-horizontal" action=" " method="post" id="contact_form">
+<form class="form-horizontal" action="./askride" method="post" id="contact_form">
 	<fieldset>
+	<!-- Text input-->
 
-		<!-- Form Name -->
-
-		<legend>Set destinations</legend>
-
-		<!-- Text input-->
-
-		<div class="form-group">
-			<label class="col-md-4 control-label">From</label>
-			<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-home"></i></span> <input
-						name="fromDestination" placeholder="From Destination"
-						class="form-control" type="text">
-				</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">From</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-home"></i></span> <input
+					name="fromDestination" placeholder="Source"
+					class="form-control" type="text">
 			</div>
 		</div>
+	</div>
 
-		<!-- Text input-->
+	<!-- Text input-->
 
-		<div class="form-group">
-			<label class="col-md-4 control-label">To</label>
-			<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-home"></i></span> <input name="toDestination"
-						placeholder="To Destination" class="form-control" type="text">
-				</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">To</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-home"></i>
+				</span> 
+				<input name="toDestination"	placeholder="Destination" class="form-control" type="text">
 			</div>
 		</div>
+	</div>
 
-		<!-- Text area -->
+	<!-- Date picker -->
 
-		<div class="form-group">
-			<label class="col-md-4 control-label">Notes</label>
-			<div class="col-md-4 inputGroupContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-pencil"></i></span>
-					<textarea class="form-control" name="comment"
-						placeholder="Project Description" rows="10c"></textarea>
-				</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">DateTime</label>
+		
+					<div class="col-sm-10">
+		<div class="input-group date form_datetime col-sm-8"
+			data-date="1979-09-16T05:25:07Z"
+			data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+			
+			<span class="input-group-addon">
+				<i class="glyphicon glyphicon-th"></i>
+			</span>
+			
+			<input class="form-control" type="text" readonly>
+		</div>
+		
+		<input type="hidden" id="dtp_input1" value="" /><br />
+		
+		</div>
+	</div>
+	
+	<!-- Text input-->
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Seats</label>
+		<div class="col-sm-4">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-user"></i>
+				</span> 
+				<input name="seats"	placeholder="Passengers" class="form-control" type="text">
 			</div>
 		</div>
+	</div>
+	
+	<!-- Radio button-->
+	<div class="form-group">
+	    <label class="col-md-2 control-label">Non-Smoking</label>
+	    <div class="col-sm-10">
+	        <div class="input-group">
+	                <input type="checkbox" name="nonSmoking" /> 
+	        </div>
+	    </div>
+	</div>
 
-		<!-- Date picker -->
+	<!-- Text area -->
 
-		<div class="form-group">
-			<label for="dtp_input1" class="col-md-4 control-label">DateTime</label>
-			<div class="input-group date form_datetime col-md-4"
-				data-date="1979-09-16T05:25:07Z"
-				data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-				<input class="form-control" size="10" type="text" value="" readonly>
-				<span class="input-group-addon"><span
-					class="glyphicon glyphicon-remove"></span></span> <span
-					class="input-group-addon"><span
-					class="glyphicon glyphicon-th"></span></span>
-			</div>
-			<input type="hidden" id="dtp_input1" value="" /><br />
-		</div>
-
-		<!-- Button -->
-		<div class="form-group">
-			<label class="col-md-4 control-label"></label>
-			<div class="col-md-4">
-				<button type="submit" class="btn btn-warning">
-					Send <span class="glyphicon glyphicon-send"></span>
-				</button>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Notes</label>
+		<div class="col-sm-10">
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-pencil"></i></span>
+				<textarea class="form-control" name="notes" rows="6"></textarea>
 			</div>
 		</div>
+	</div>
+
+	<!-- Button -->
+	<div class="form-group">
+		<label class="col-sm-2 control-label"></label>
+		<div class="col-sm-10">
+			<button type="submit" class="btn btn-warning">
+				Submit <span class="glyphicon glyphicon-send"></span>
+			</button>
+		</div>
+	</div>
 
 	</fieldset>
 </form>
 
-
-<script type="text/javascript" src="js/jquery-3.1.0.min" charset="UTF-8"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.js"
 	charset="UTF-8"></script>
 

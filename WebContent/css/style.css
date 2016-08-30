@@ -80,3 +80,7 @@ body {
 	font-size: 12px;
 	font-weight: bold;
 }
+
+textarea {
+   resize: none;
+}
