@@ -83,4 +83,8 @@ body {
 
 textarea {
    resize: none;
+
+.homealert{
+	/* margin-top:40px; */
+	display:none;
 }
