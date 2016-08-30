@@ -31,7 +31,6 @@ public class AuthController extends HttpServlet {
 
 		UserService us = new UserService();
 		
-		
 		HttpSession session = request.getSession();
 		String userId = String.valueOf(session.getAttribute("userId"));
 		String email = String.valueOf(session.getAttribute("email"));

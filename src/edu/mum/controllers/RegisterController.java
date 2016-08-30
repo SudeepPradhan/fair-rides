@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import edu.mum.models.User;
 import edu.mum.services.UserService;
-import edu.mum.utils.HibernateUtil;
-
+import edu.mum.utils.GeneralUtil;
+ 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class RegisterController extends HttpServlet {
 			user.setCity(request.getParameter("city"));
 			user.setState(request.getParameter("state"));
 			user.setZip(Integer.valueOf(request.getParameter("zip")));
-			user.setPassword(HibernateUtil.getEncryptedPassword(request
+			user.setPassword(GeneralUtil.getEncryptedPassword(request
 					.getParameter("password")));
 
 			User user2 = userService.saveUser(user);

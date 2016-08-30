@@ -9,11 +9,12 @@ var Rides = (function(){
 	
 	//output selector
 	var output =  $("#output");
-	
+	var myModal = $("#myModal");
 	//login page retrieve
 	function loginSucFunc(data){
-		console.log(data);
-		output.html(data);
+		myModal.modal('show');
+		$('.modal-title').text("Login Page")
+		$('.modal-body').html(data);
   	}
 	
 	//error retrieve
@@ -29,6 +30,13 @@ var Rides = (function(){
 			$.ajax(appPath+"/login",{})
 			.success(loginSucFunc)
 			.error(errorFunc);
+		},
+		getSerializedObject: function(selector){
+			var data = {};
+  			jQuery.each( $(selector).serializeArray(), function( i, field ) {
+			       data[field.name]=field.value;
+			    });
+ 			return data;
 		}
 	};
 	

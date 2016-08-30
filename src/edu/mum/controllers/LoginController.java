@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import edu.mum.models.User;
 import edu.mum.services.UserService;
-import edu.mum.utils.HibernateUtil;
-
+import edu.mum.utils.GeneralUtil;
+ 
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -32,10 +32,11 @@ public class LoginController extends HttpServlet {
 		UserService userService = new UserService();
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
+				
 		if(email != null && pass != null){
 			
-			if(userService.checkUser(email,HibernateUtil.getEncryptedPassword(pass))){
-				User user = userService.getUser(email,HibernateUtil.getEncryptedPassword(pass));
+			if(userService.checkUser(email,GeneralUtil.getEncryptedPassword(pass))){
+				User user = userService.getUser(email,GeneralUtil.getEncryptedPassword(pass));
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", user.getUserid());
