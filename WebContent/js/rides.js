@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+ 
 var Rides = (function(){
 	'use strict';
 	
@@ -21,11 +21,7 @@ var Rides = (function(){
 		console.log(xhr,errCode,responseText);
 	}
 	
-	return {
-		init: function(){
-			loginSucFunc();
-			errorFunc();
-		},
+	return { 
 		auth: function(){
 			// check if cookie has valid session id then bring rides 
 			// and ask rides content
