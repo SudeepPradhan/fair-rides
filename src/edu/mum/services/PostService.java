@@ -53,7 +53,7 @@ public class PostService {
 	 * @param destination
 	 * @return
 	 */
-	public Post getPost(String source, String destination) {
+	public Post getPost(int postId) {
 		 
 		try {// 1. configuring hibernate
 			Configuration configuration = new Configuration().configure();
@@ -67,11 +67,9 @@ public class PostService {
 			// 4. Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			Query query = (Query) session
-					.createQuery(
-							"FROM User where source='" + source
-									+ "' AND destination='" + destination + "'");
+					.createQuery("FROM posts where postid='" + postId	+ "'");
 			List<Post> results = query.getResultList();
-
+			
 			if (results.size() == 1) {
 				return results.get(0);
 			}

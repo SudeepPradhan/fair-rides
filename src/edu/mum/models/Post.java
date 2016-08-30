@@ -1,27 +1,27 @@
 package edu.mum.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import edu.mum.utils.PostType;
 
 @Entity
+@Table(name="posts")
 public class Post {
 	
 	@Id
 	@GeneratedValue
 	private int postid;
-	
+	private int userId;
+	private String post;
 	private PostType postType;
-	private String fromSource;
-	private String toDestination;
-	private String dateTime;
-	private String seats;
-	private boolean nonSmoking;
-	private String description;
+	private Date dateCreated;	
+	private Date dateUpdated;	
 
-	
 	public Post(){}
 	
 	public int getPostid() {
@@ -32,62 +32,43 @@ public class Post {
 		this.postid = postid;
 	}
 	
-	
-	public String getFromSource() {
-		return fromSource;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setFromSource(String fromSource) {
-		this.fromSource = fromSource;
-	}
-	
-	
-	public String getToDestination() {
-		return toDestination;
-	}
-
-	public void setToDestination(String toDestination) {
-		this.toDestination = toDestination;
-	}
-
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
-	public String getDateTime() {
-		return dateTime;
+	public String getPost() {
+		return post;
 	}
 
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
+	public void setPost(String post) {
+		this.post = post;
 	}
-
-	public String getSeats() {
-		return seats;
-	}
-
-	public void setSeats(String seats) {
-		this.seats = seats;
-	}
-
-	public boolean isNonSmoking() {
-		return nonSmoking;
-	}
-
-	public void setNonSmoking(boolean nonSmoking) {
-		this.nonSmoking = nonSmoking;
-	}
-
+	
 	public PostType getPostType() {
 		return postType;
 	}
 
 	public void setPostType(PostType postType) {
 		this.postType = postType;
+	}
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+	
+	public Date getDateUpdated() {
+		return dateUpdated;
+	}
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
 }
