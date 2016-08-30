@@ -5,10 +5,7 @@
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
-
-
-
-
+ 
 
 <form class="form-horizontal" action=" " method="post" id="contact_form">
 	<fieldset>
