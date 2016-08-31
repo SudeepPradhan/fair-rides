@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div>
 
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#posts"
-			aria-controls="home" role="tab" data-toggle="tab">Posts Ride</a></li>
+			aria-controls="posts" role="tab" data-toggle="tab">Posts Ride</a></li>
 		<li role="presentation"><a href="#askforride"
-			aria-controls="profile" role="tab" data-toggle="tab">Ask For Ride</a></li>
+			aria-controls="askforride" role="tab" data-toggle="tab">Ask For
+				Ride</a></li>
 	</ul>
 
 	<!-- Tab panes -->
@@ -28,16 +29,28 @@
 				<c:forEach var="post" items="${posts}">
 					<div class="post_item">
 						<h3>
-							<span class="pull-left">${post.post}</span>
-							<span class="pull-right author">
-							 by - ${post.user.fullname}
-							</span>
+							<span class="pull-left">${post.post}</span> <span
+								class="pull-right author"> by - ${post.user.fullname} </span>
 						</h3>
+
+						<c:forEach var="comment" items="${post.comments}">
+						<div class="comments">
+							<q><span>${comment.comment}</span></q>
+							<span class="author">by - ${comment.user.fullname}</span>
+						</div>
+						</c:forEach>
+						 
+
 						<div class="socials" data-post-id="${post.postid}">
-							<a class="likebtn pull-left"></a>
+							<a class="disabled likebtn pull-left">
+								<span class="likeCount">${post.likes.size()}</span>
+							</a> 
+							
 							<textarea rows="1" cols="60" class="commentbox"
 								placeholder="Write a comment"></textarea>
 						</div>
+
+
 					</div>
 				</c:forEach>
 			</div>
@@ -53,17 +66,16 @@
 			</h2>
 
 			<div class="posts">
-				
+
 				<c:forEach var="ask" items="${asks}">
-				<fmt:formatDate value="${ask.datecreated}" var="datecreated" 
-                type="date" pattern="MM/dd/yyyy hh:mm a" />
-				
+					<fmt:formatDate value="${ask.datecreated}" var="datecreated"
+						type="date" pattern="MM/dd/yyyy hh:mm a" />
+
 					<div class="post_item">
 						<h3>
-							<span class="pull-left">${ask.post}</span>
-							<span class="pull-right author">
-							 by - ${ask.user.fullname} at - ${datecreated} 
-							</span>
+							<span class="pull-left">${ask.post}</span> <span
+								class="pull-right author"> by - ${ask.user.fullname} at -
+								${datecreated} </span>
 						</h3>
 						<div class="socials" data-post-id="${ask.postid}">
 							<a class="likebtn pull-left"></a>

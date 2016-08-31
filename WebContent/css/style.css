@@ -26,11 +26,19 @@ body {
 
 .likebtn {
 	display: block;
-	width: 50px;
+	width: 70px;
 	height: 22px;
+	text-align: right;
+	text-decoration: none;
 	border: none;
 	cursor: pointer;
 	background-image: url("../img/like_btn_g.png");
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.likebtn:hover {
+	text-decoration: none;
 }
 
 .likebtnH {
@@ -50,7 +58,7 @@ body {
 .commentbox {
 	border: 1px solid #CECECE;
 	margin-left: 20px !important;
-	width: 92%;
+	width: 80%;
 	font-weight: normal;
 }
 
@@ -90,6 +98,7 @@ body {
 	font-size: 11px;
 	font-style: italic;
 	font-weight: bold;
+	text-align: right;
 }
 
 textarea {
@@ -114,6 +123,41 @@ textarea {
 .gm-style-iw {
 	text-align: center;
 }
-.weatherJumbotron{
-	overflow:auto;
+
+.weatherJumbotron {
+	overflow: auto;
+}
+
+#forecast5days div,#forecast3hours div {
+	width: 150px;
+	height: 80px;
+	padding: 5px;
+	margin: 5px;
+	border: 1px solid #CECECE;
+}
+
+#forecast5days div:nth-child(odd),#forecast3hours div:nth-child(even) {
+	background: #EEE;
+}
+
+q {
+	line-height: 12px;
+}
+
+q span {
+	font-size: 11px;
+	font-style: italic;
+	line-height: 11px;
+}
+
+q:before {
+	color: #ccc;
+	content: open-quote;
+	font-size: 4em;
+	margin-right: 0.25em;
+	vertical-align: -0.4em;
+}
+
+.likeCount {
+	text-align: right;
 }

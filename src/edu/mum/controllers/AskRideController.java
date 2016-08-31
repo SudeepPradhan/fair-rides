@@ -2,8 +2,7 @@ package edu.mum.controllers;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Random;
-
+ 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +17,7 @@ import edu.mum.models.Post;
 import edu.mum.models.User;
 import edu.mum.services.PostService;
 import edu.mum.services.UserService;
+
  
 @WebServlet("/askride")
 public class AskRideController extends HttpServlet {
@@ -29,31 +29,28 @@ public class AskRideController extends HttpServlet {
 
 	 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PostService postService = new PostService();
 		UserService userService = new UserService();
+		PostService postService = new PostService();
 		HttpSession session = request.getSession();
 
-		int userId = (int) session.getAttribute("userid");
+		int userId=(int) session.getAttribute("userid");
+ 		 
 		User user = userService.getUserByUserId(userId);
 		Post post = null;
-		
-		Object postId = request.getAttribute("postId");
-		if( postId != null)
-			post = postService.getPost((int)postId);
-			
-		if(post == null) {
-			post = new Post(); 
-			post.setPostid(new Random().nextInt(50));
+ 
+		if (post == null) {
+			post = new Post();
 			post.setUser(user);
-			post.setPosttype(2); //2 means ask/request a ride
+			post.setPosttype(2); // 2 means request
 			post.setDatecreated(new Date());
+			post.setPost(request.getParameter("post"));
+			post.setDateupdated(new Date());
 		}
-		
-		post.setPost(request.getParameter("post"));
-		post.setDateupdated(new Date());
+
+ 
 
 		Post post2 = postService.savePost(post);
-		
+
 		if (post2.getPostid() > 0) {
 			request.setAttribute("message", "");
 			ObjectWriter ow = new ObjectMapper().writer()

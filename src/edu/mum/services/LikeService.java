@@ -1,37 +1,34 @@
 package edu.mum.services;
 
- import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import edu.mum.models.Post;
+import edu.mum.models.Like;
 import edu.mum.utils.HibernateUtil;
 
-public class ContentService {
-	SessionFactory sf;
-	public ContentService() {
+public class LikeService {
+
+	private SessionFactory sf;
+	public LikeService() {
 		this.sf=HibernateUtil.getSessionFactory();
+
 	}
 
-	public List<Post> getPosts(int postType, int size) {
+	/**
+	 * Save Like
+	 * 
+	 * @param like
+	 * @return
+	 */
+	public Like saveLike(Like like) {
 		Session session = sf.getCurrentSession();
 		Transaction transaction = null;
-		List<Post> posts = null;
 		try {
 
 			transaction = session.getTransaction();
 			transaction.begin();
-			
-			Query query = session.createQuery("FROM Post where posttype="+postType+" ORDER BY postid DESC");
-			query.setMaxResults(size);
-			
-			posts = query.list();
-
-			System.out.println(postType);
-			
+			session.save(like);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,6 +36,6 @@ public class ContentService {
 				transaction.rollback();
 			}
 		}
-		return posts;
+		return like;
 	}
 }

@@ -13,6 +13,7 @@
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </head>
 <body>
@@ -27,13 +28,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Fair Ride</a>
+				<a class="navbar-brand" href="">Fair Ride</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="">Home</a></li>
-					<li><a href="#about">How it work?</a></li>
-					<li><a href="#contact">Support</a></li>
+					<li><a href="">How it work?</a></li>
+					<li><a href="">Support</a></li>
 					<li><a href="weather" title="Weather Service">Weather
 							Service</a></li>
 
@@ -45,7 +46,7 @@
 						aria-expanded="true">Options <span
 							class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Update Profile <span
+							<li><a href="">Update Profile <span
 									class="glyphicon glyphicon-user"></span></a></li>
 							<li><a href="javascript:;" id="logoutBtn">Logout <span
 									class="glyphicon glyphicon-remove-circle"></span></a></li>

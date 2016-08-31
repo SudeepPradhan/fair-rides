@@ -124,11 +124,12 @@ public class UserService {
 		Transaction transaction = null;
 		User user = null;
 		try {
-			transaction = session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("from User where email='"
-					+ email + "'  ");
-			List<User> results = query.list();
-			if (results.size() > 0) {
+			transaction = session.getTransaction();
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			List<User> results = session.createSQLQuery("from User where email='"
+					+ email + "'  ").list();
+ 			if (results.size() > 0) {
 				user = results.get(0);
 			}
 			transaction.commit();
@@ -147,11 +148,12 @@ public class UserService {
 		Transaction transaction = null;
 		User user = null;
 		try {
-			transaction = session.beginTransaction();
-			SQLQuery query = session.createSQLQuery("from User where userid='"
-					+ userId + "'  ");
-			List<User> results = query.list();
-			if (results.size() > 0) {
+			transaction = session.getTransaction();
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			List<User> results = session.createQuery("from User where userid="
+					+ userId + "  ").list();
+ 			if (results.size() > 0) {
 				user = results.get(0);
 			}
 			transaction.commit();

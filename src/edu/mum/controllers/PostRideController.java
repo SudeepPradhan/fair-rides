@@ -2,7 +2,6 @@ package edu.mum.controllers;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,40 +18,35 @@ import edu.mum.models.User;
 import edu.mum.services.PostService;
 import edu.mum.services.UserService;
 
+ 
 @WebServlet("/postride")
 public class PostRideController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("post_ride.jsp")
-				.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("post_ride.jsp").forward(request,response);
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		PostService postService = new PostService();
+	 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserService userService = new UserService();
+		PostService postService = new PostService();
 		HttpSession session = request.getSession();
 
-		int userId = (int) session.getAttribute("userid");
+		int userId=(int) session.getAttribute("userid");
+ 		 
 		User user = userService.getUserByUserId(userId);
 		Post post = null;
-
-		Object postId = request.getAttribute("postid");
-		if (postId != null)
-			post = postService.getPost((int) postId);
-
+ 
 		if (post == null) {
 			post = new Post();
-			post.setPostid(new Random().nextInt(50));
 			post.setUser(user);
-			post.setPosttype(1); // 1 means offer
+			post.setPosttype(1); // 1 means request
 			post.setDatecreated(new Date());
+			post.setPost(request.getParameter("post"));
+			post.setDateupdated(new Date());
 		}
 
-		post.setPost(request.getParameter("post"));
-		post.setDateupdated(new Date());
+ 
 
 		Post post2 = postService.savePost(post);
 
@@ -64,4 +58,5 @@ public class PostRideController extends HttpServlet {
 			response.getWriter().println(json);
 		}
 	}
+
 }

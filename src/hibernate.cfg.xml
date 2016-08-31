@@ -15,5 +15,7 @@
 		<!-- <property name="hbm2ddl.auto">create</property> -->
 		<mapping class="edu.mum.models.User"></mapping>
 		<mapping class="edu.mum.models.Post"></mapping>
+		<mapping class="edu.mum.models.Comment"></mapping>
+		<mapping class="edu.mum.models.Like"></mapping>
 	</session-factory>
 </hibernate-configuration>

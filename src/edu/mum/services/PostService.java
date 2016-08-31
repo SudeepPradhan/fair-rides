@@ -9,12 +9,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import edu.mum.models.Comment;
 import edu.mum.models.Post;
- 
+import edu.mum.models.User;
+import edu.mum.utils.HibernateUtil;
+
 public class PostService {
 
+	private SessionFactory sf;
+	
 	public PostService() {
-
+		this.sf=HibernateUtil.getSessionFactory();
 	}
 
 	/**
@@ -24,25 +29,20 @@ public class PostService {
 	 * @return
 	 */
 	public Post savePost(Post post) {
-		 
+		Session session = sf.getCurrentSession();
+		Transaction transaction = null;
 		try {
-			// 1. configuring hibernate
-						Configuration configuration = new Configuration().configure();
 
-						// 2. create sessionfactory
-						SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-						// 3. Get Session object
-						Session session = sessionFactory.openSession();
-
-						// 4. Starting Transaction
-						Transaction transaction = session.beginTransaction();
+			transaction = session.getTransaction();
+			transaction.begin();
 			session.save(post);
 			transaction.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
-
 		return post;
 	}
 
@@ -54,29 +54,27 @@ public class PostService {
 	 * @return
 	 */
 	public Post getPost(int postId) {
-		 
-		try {// 1. configuring hibernate
-			Configuration configuration = new Configuration().configure();
 
-			// 2. create sessionfactory
-			SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-			// 3. Get Session object
-			Session session = sessionFactory.openSession();
-
-			// 4. Starting Transaction
-			Transaction transaction = session.beginTransaction();
-			Query query = (Query) session
-					.createQuery("FROM posts where postid='" + postId	+ "'");
-			List<Post> results = query.getResultList();
-			
-			if (results.size() == 1) {
-				return results.get(0);
+		Session session = sf.getCurrentSession();
+		Transaction transaction = null;
+		Post post = null;
+		try {
+			transaction = session.getTransaction();
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			List<Post> results = session.createQuery(
+					"from Post where postid=" + postId + "  ").list();
+			if (results.size() > 0) {
+				post = results.get(0);
 			}
 			transaction.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
-		return null;
+		return post;
 	}
+
+	
 }
