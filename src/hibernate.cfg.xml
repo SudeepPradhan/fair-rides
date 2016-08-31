@@ -14,6 +14,5 @@
 		<property name="format_sql">true</property>
 		<!-- <property name="hbm2ddl.auto">create</property> -->
 		<mapping class="edu.mum.models.User"></mapping>
-		<mapping class="edu.mum.models.Post"></mapping>
 	</session-factory>
 </hibernate-configuration>

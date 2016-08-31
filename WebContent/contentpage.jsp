@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div>
 
@@ -24,22 +22,168 @@
 			</h2>
 
 			<div class="posts">
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
 
-				<c:forEach var="post" items="${posts}">
-					<div class="post_item">
-						<h3>
-							<span class="pull-left">${post.post}</span>
-							<span class="pull-right author">
-							 by - ${post.user.fullname}
-							</span>
-						</h3>
-						<div class="socials" data-post-id="${post.postid}">
-							<a class="likebtn pull-left"></a>
-							<textarea rows="1" cols="60" class="commentbox"
-								placeholder="Write a comment"></textarea>
-						</div>
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
 					</div>
-				</c:forEach>
+				</div>
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Fairfield :: To : Des Moines</span>
+						<span class="pull-right btn btn-mini  btn-default">view map</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
 			</div>
 
 
@@ -53,25 +197,192 @@
 			</h2>
 
 			<div class="posts">
-				
-				<c:forEach var="ask" items="${asks}">
-				<fmt:formatDate value="${ask.datecreated}" var="datecreated" 
-                type="date" pattern="MM/dd/yyyy hh:mm a" />
-				
-					<div class="post_item">
-						<h3>
-							<span class="pull-left">${ask.post}</span>
-							<span class="pull-right author">
-							 by - ${ask.user.fullname} at - ${datecreated} 
-							</span>
-						</h3>
-						<div class="socials" data-post-id="${ask.postid}">
-							<a class="likebtn pull-left"></a>
-							<textarea rows="1" cols="60" class="commentbox"
-								placeholder="Write a comment"></textarea>
-						</div>
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
 					</div>
-				</c:forEach>
+				</div>
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
+				<div class="post_item">
+					<h3>
+						<span class="pull-left">From : Mt Pleasent :: To : Iowa
+							City</span> <span class="pull-right ondate"> on <strong>12th
+								September, 2016</span>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Dolore suscipit rem facilis illum placeat sit molestias voluptates
+						iste eos sapiente. Odio molestiae veritatis accusamus repellendus
+						provident iure iusto ex eveniet?</p>
+
+					<div class="socials">
+						<a class="likebtn pull-left"></a>
+						<textarea rows="1" cols="60" class="commentbox"
+							placeholder="Write a comment"></textarea>
+					</div>
+				</div>
+
+
 
 			</div>
 		</div>

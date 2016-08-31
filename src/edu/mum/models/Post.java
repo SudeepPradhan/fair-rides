@@ -5,8 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edu.mum.utils.PostType;
@@ -18,14 +16,11 @@ public class Post {
 	@Id
 	@GeneratedValue
 	private int postid;
-
-	@ManyToOne
-	@JoinColumn(name="userid")
-	private User user;
+	private int userId;
 	private String post;
-	private int posttype;
-	private Date datecreated;	
-	private Date dateupdated;	
+	private PostType postType;
+	private Date dateCreated;	
+	private Date dateUpdated;	
 
 	public Post(){}
 	
@@ -37,16 +32,14 @@ public class Post {
 		this.postid = postid;
 	}
 	
-	 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public String getPost() {
 		return post;
 	}
@@ -55,30 +48,27 @@ public class Post {
 		this.post = post;
 	}
 	
+	public PostType getPostType() {
+		return postType;
+	}
+
+	public void setPostType(PostType postType) {
+		this.postType = postType;
+	}
 	
-	public int getPosttype() {
-		return posttype;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setPosttype(int posttype) {
-		this.posttype = posttype;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+	
+	public Date getDateUpdated() {
+		return dateUpdated;
 	}
 
-	public Date getDatecreated() {
-		return datecreated;
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
-
-	public void setDatecreated(Date datecreated) {
-		this.datecreated = datecreated;
-	}
-
-	public Date getDateupdated() {
-		return dateupdated;
-	}
-
-	public void setDateupdated(Date dateupdated) {
-		this.dateupdated = dateupdated;
-	}
-
-	 
 }

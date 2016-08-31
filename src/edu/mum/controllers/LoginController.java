@@ -43,11 +43,11 @@ public class LoginController extends HttpServlet {
 					System.out.println("USER:::" + user.getEmail());
 
 					HttpSession session = request.getSession();
-					session.setAttribute("userid", user.getUserid());
+					session.setAttribute("userId", user.getUserid());
 					session.setAttribute("email", user.getEmail());
 					session.setAttribute("fullname", user.getFullname());
 
-					response.addCookie(new Cookie("userid", String.valueOf(user
+					response.addCookie(new Cookie("userId", String.valueOf(user
 							.getUserid())));
 					response.addCookie(new Cookie("email", user.getEmail()));
 					response.addCookie(new Cookie("fullname", user
