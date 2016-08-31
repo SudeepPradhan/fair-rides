@@ -11,8 +11,6 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-     
-
 <div class="container">
  <h2>Login Page</h2>
 <form class="form-horizontal">
@@ -49,8 +47,5 @@
   </div>
 </form>
 </div>
-
-
-
 </body>
 </html>
