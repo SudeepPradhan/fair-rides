@@ -19,7 +19,7 @@ public class User {
 	private String state;
 	private String city;
 	private String street;
-	private int zip;
+	private int zipcode;
 	private int birthyear;
 	
 	private String email;
@@ -88,14 +88,15 @@ public class User {
 		this.street = street;
 	}
 
+ 
 
-	public int getZip() {
-		return zip;
+	public int getZipcode() {
+		return zipcode;
 	}
 
 
-	public void setZip(int zip) {
-		this.zip = zip;
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
 	}
 
 

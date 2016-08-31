@@ -57,7 +57,7 @@ public class RegisterController extends HttpServlet {
 				user.setStreet(request.getParameter("street"));
 				user.setCity(request.getParameter("city"));
 				user.setState(request.getParameter("state"));
-				user.setZip(Integer.valueOf(request.getParameter("zip")));
+				user.setZipcode(Integer.valueOf(request.getParameter("zipcode")));
 				user.setPassword(GeneralUtil.getEncryptedPassword(password));
 
 				User user2 = userService.saveUser(user);
