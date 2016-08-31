@@ -37,6 +37,28 @@ $(document).ready(function() {
 		});
 	});
 
+	$(document).delegate("#registerSubmit", "click", function() {
+		var data = Rides.getSerializedObject("#register");
+		$.ajax("/project/register", {
+			"type" : "post",
+			"data" : data
+		}).success(function(res){
+			if(res != null){
+				var response = JSON.parse(res);
+				if(response.message != null){
+					$(".alert-success").show("slow").html(response.message);
+				}
+				if(response.email != null){
+					myModal.modal("hide");
+					$(".alert-success").show("slow").html("Successfully registered and logged in.");
+					$.ajax("/project/content", {}).success(function(out){output.html(out);});
+				}
+			}
+		});
+
+	});
+	
+	
 	$(document).delegate("#postrideForm", "click", function() { 
 		myModal.modal("show");
 		$.ajax("/project/postride", {}).success(function(res) {
@@ -62,9 +84,6 @@ $(document).ready(function() {
 	});
 	
  	
-	$(document).delegate("#registerSubmit", "click", function() {
-		// process register with validation
-
-	});
+	
 
 });
