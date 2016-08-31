@@ -17,10 +17,10 @@ var Rides = (function() {
 		$('.modal-body').html(data);
 	}
 
-	function contentSucFunc(res){
+	function contentSucFunc(res) {
 		output.html(res);
 	}
-	
+
 	// error retrieve
 	function errorFunc(xhr, errCode, responseText) {
 		console.log(xhr, errCode, responseText);
@@ -31,13 +31,15 @@ var Rides = (function() {
 			var email = this.getCookie("email");
 			if (email) {
 				// just normal behaviour
-				$.ajax(appPath + "/content", {}).success(contentSucFunc).error(errorFunc);
+				$.ajax(appPath + "/content", {}).success(contentSucFunc).error(
+						errorFunc);
 
 			} else {
 				// check if cookie has valid session id then bring rides
 				// and ask rides content
 				// if not then bring register / sign in
-				$.ajax(appPath + "/login", {}).success(loginSucFunc).error(errorFunc);
+				$.ajax(appPath + "/login", {}).success(loginSucFunc).error(
+						errorFunc);
 			}
 		},
 		getSerializedObject : function(selector) {
@@ -60,6 +62,15 @@ var Rides = (function() {
 				}
 			}
 			return "";
+		},
+		cleanCookies : function() {
+			document.cookie.split(";").forEach(
+					function(c) {
+						document.cookie = c.replace(/^ +/, "").replace(
+								/=.*/,
+								"=;expires=" + new Date().toUTCString()
+										+ ";path=/");
+					});
 		}
 	};
 

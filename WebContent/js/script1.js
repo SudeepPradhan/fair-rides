@@ -75,13 +75,14 @@ $(document).ready(function() {
 		});
 	});
 	
-	$("#weatherForm").click(function(){
-		myModal.modal("show");
-		$.ajax("/project/weather", {}).success(function(data) {
-			$(".modal-title").text("Weather Service");
-			$(".modal-body").html(data);
-		});
-	});
+	 $("#logoutBtn").click(function(){
+		 console.log(this);
+//		 Rides.cleanCookies();
+//		 $.ajax("/project/auth",{"type":"GET",data:{"action":"logout"}}).success(function(res){
+//			 console.log(res);
+//		 });
+//		 location.reload();
+	 });
 	
  	
 	

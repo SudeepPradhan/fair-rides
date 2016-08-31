@@ -8,6 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -29,21 +31,23 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href="">Home</a></li>
 					<li><a href="#about">How it work?</a></li>
 					<li><a href="#contact">Support</a></li>
-					<li><a href="javascript:;" id="weatherForm">Weather
+					<li><a href="weather" title="Weather Service">Weather
 							Service</a></li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="true">Options <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+						aria-expanded="true">Options <span
+							class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Update Profile <span
 									class="glyphicon glyphicon-user"></span></a></li>
-							<li><a href="auth?action=logout">Logout <span
+							<li><a href="javascript:;" id="logoutBtn">Logout <span
 									class="glyphicon glyphicon-remove-circle"></span></a></li>
 						</ul></li>
 
@@ -70,7 +74,8 @@
 			</footer>
 
 		</div>
-		<!-- /container -->
+		<!-- /jumbotron -->
+
 
 
 
@@ -95,18 +100,20 @@
 			</div>
 		</div>
 
+	</div>
+	<!-- /container -->
 
-		<script type="text/javascript" src="js/rides.js"></script>
-		<script type="text/javascript" src="js/script1.js"></script>
+	<script type="text/javascript" src="js/rides.js"></script>
+	<script type="text/javascript" src="js/script1.js"></script>
 
-		<script>
-			//load jQuery
-			$(document).ready(function() {
+	<script>
+		//load jQuery
+		$(document).ready(function() {
 
-				//testing module pattern
-				Rides.auth();
+			//testing module pattern
+			Rides.auth();
 
-			});
-		</script>
+		});
+	</script>
 </body>
 </html>

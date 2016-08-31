@@ -25,7 +25,7 @@ public class AuthController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if (action != null && action == "logout") {
+		if (action != null && action.equals("logout")) {
 			HttpSession sesssion = request.getSession();
 			sesssion.invalidate();
  			Map<String, String> map = new HashMap<>();
