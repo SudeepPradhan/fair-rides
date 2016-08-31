@@ -18,7 +18,6 @@ import edu.mum.models.Post;
 import edu.mum.models.User;
 import edu.mum.services.PostService;
 import edu.mum.services.UserService;
-import edu.mum.utils.PostType;
  
 @WebServlet("/askride")
 public class AskRideController extends HttpServlet {
