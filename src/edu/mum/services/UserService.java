@@ -1,16 +1,23 @@
 package edu.mum.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.RootEntityResultTransformer;
 
+import edu.mum.models.Post;
 import edu.mum.models.User;
- 
+import edu.mum.utils.HibernateUtil;
+
 public class UserService {
 
 	public UserService() {
@@ -24,23 +31,18 @@ public class UserService {
 	 * @return
 	 */
 	public User saveUser(User user) {
-		 
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
 		try {
-			// 1. configuring hibernate
-						Configuration configuration = new Configuration().configure();
-
-						// 2. create sessionfactory
-						SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-						// 3. Get Session object
-						Session session = sessionFactory.openSession();
-
-						// 4. Starting Transaction
-						Transaction transaction = session.beginTransaction();
+			transaction = session.beginTransaction();
 			session.save(user);
 			transaction.commit();
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Records inserted sucessessfully");
+		} catch (HibernateException e) {
+			transaction.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
 
 		return user;
@@ -53,34 +55,31 @@ public class UserService {
 	 * @param passmd5
 	 * @return
 	 */
-	public boolean checkUser(String email, String passmd5) {
-
+	public User checkUser(String email, String passmd5) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
+		User user = null;
 		try {
-			// 1. configuring hibernate
-			Configuration configuration = new Configuration().configure();
 
-			// 2. create sessionfactory
-			SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-			// 3. Get Session object
-			Session session = sessionFactory.openSession();
-
-			// 4. Starting Transaction
-			Transaction transaction = session.beginTransaction();
-			Query query = (Query) session.createQuery("from User where email='"
-					+ email + "' AND password='" + passmd5 + "'");
-			List<User> results = query.getResultList();
-			if (results.isEmpty())
-				return false;
-			else if (results.size() == 1)
-				return true;
+			transaction = session.getTransaction();
+			transaction.begin();
+			@SuppressWarnings("unchecked")
+			List<User> users = session.createQuery(
+					"from User where email='" + email + "' AND password='"
+							+ passmd5 + "'").list();
+			System.out.println("user: " + users.size());
+			if (null != users && users.size() > 0) {
+				user = users.get(0);
+				System.out.println("user email: " + user.getEmail());
+			}
 			transaction.commit();
+
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
-		return false;
-
+		return user;
 	}
 
 	/**
@@ -91,60 +90,77 @@ public class UserService {
 	 * @return
 	 */
 	public User getUser(String email, String passmd5) {
-		 
-		try {// 1. configuring hibernate
-			Configuration configuration = new Configuration().configure();
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
+		User user = null;
+		try {
+			transaction = session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("from User where email='"
+					+ email + "' AND password='" + passmd5 + "'");
+			List<User> results = query.list();
+			System.out.println("get user: " + results.size());
 
-			// 2. create sessionfactory
-			SessionFactory sessionFactory = configuration.buildSessionFactory();
-
-			// 3. Get Session object
-			Session session = sessionFactory.openSession();
-
-			// 4. Starting Transaction
-			Transaction transaction = session.beginTransaction();
-			Query query = (Query) session
-					.createQuery(
-							"FROM User where email='" + email
-									+ "' AND password='" + passmd5 + "'");
-			List<User> results = query.getResultList();
-
-			if (results.size() == 1) {
-				return results.get(0);
+			if (results.size() > 0) {
+				System.out.println("get user: " + results.get(0).getEmail());
+				user = results.get(0);
 			}
 			transaction.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
-		return null;
+		return user;
 	}
 
+	/**
+	 * Get User by Email
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public User getUserByEmail(String email) {
- 		try {
- 		// 1. configuring hibernate
- 					Configuration configuration = new Configuration().configure();
-
- 					// 2. create sessionfactory
- 					SessionFactory sessionFactory = configuration.buildSessionFactory();
-
- 					// 3. Get Session object
- 					Session session = sessionFactory.openSession();
-
- 					// 4. Starting Transaction
- 					Transaction transaction = session.beginTransaction();
-			Query query = (Query)session
-					.createQuery(
-							"FROM User where email='" + email + "'  ");
-			List<User> results = query.getResultList();
-
-			if (results.size() == 1) {
-				return results.get(0);
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
+		User user = null;
+		try {
+			transaction = session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("from User where email='"
+					+ email + "'  ");
+			List<User> results = query.list();
+			if (results.size() > 0) {
+				user = results.get(0);
 			}
 			transaction.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
-		return null;
+		return user;
+	}
+
+	 
+
+	public User getUserByUserId(int userId) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
+		User user = null;
+		try {
+			transaction = session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("from User where userid='"
+					+ userId + "'  ");
+			List<User> results = query.list();
+			if (results.size() > 0) {
+				user = results.get(0);
+			}
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return user;
 	}
 
 }

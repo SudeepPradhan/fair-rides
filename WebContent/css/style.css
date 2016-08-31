@@ -32,7 +32,14 @@ body {
 	cursor: pointer;
 	background-image: url("../img/like_btn_g.png");
 }
-
+.likebtnH{
+	width:10%;
+	overflow:auto;
+}
+.commentBoxH{
+	width:80%;
+	overflow:auto;
+}
 .likebtn:hover {
 	background-image: url("../img/like_btn.png");
 }
@@ -76,7 +83,17 @@ body {
 	font-size: 11px;
 }
 
-.ondate {
-	font-size: 12px;
+.ondate,.author {
+	font-size: 11px;
+	font-style:italic;
 	font-weight: bold;
+}
+
+textarea {
+   resize: none;
+}
+
+.homealert{
+	/* margin-top:40px; */
+	display:none;
 }

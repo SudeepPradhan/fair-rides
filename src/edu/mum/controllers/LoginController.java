@@ -16,45 +16,56 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.mum.models.User;
 import edu.mum.services.UserService;
 import edu.mum.utils.GeneralUtil;
- 
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 request.getRequestDispatcher("login.jsp").forward(request, response);
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
-	 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		UserService userService = new UserService();
 		String email = request.getParameter("email");
 		String pass = request.getParameter("password");
-				
-		if(email != null && pass != null){
-			
-			if(userService.checkUser(email,GeneralUtil.getEncryptedPassword(pass))){
-				User user = userService.getUser(email,GeneralUtil.getEncryptedPassword(pass));
-				
-				HttpSession session = request.getSession();
-				session.setAttribute("userId", user.getUserid());
-				session.setAttribute("email", user.getEmail());
-				session.setAttribute("fullname", user.getFullname());
-				
-				
-				response.addCookie(new Cookie("userId",String.valueOf(user.getUserid())));
-				response.addCookie(new Cookie("email",user.getEmail()));
-				response.addCookie(new Cookie("fullname",user.getFullname()));
-				
-				
-				ObjectWriter ow = new ObjectMapper().writer()
-						.withDefaultPrettyPrinter();
-				String json = ow.writeValueAsString(user);
-				response.getWriter().println(json);
+
+		if (email != null && pass != null) {
+
+			try {
+				User user = userService.checkUser(email,
+						GeneralUtil.getEncryptedPassword(pass));
+				System.out.println(user);
+				if (user != null) {
+
+					System.out.println("USER:::" + user.getEmail());
+
+					HttpSession session = request.getSession();
+					session.setAttribute("userid", user.getUserid());
+					session.setAttribute("email", user.getEmail());
+					session.setAttribute("fullname", user.getFullname());
+
+					response.addCookie(new Cookie("userid", String.valueOf(user
+							.getUserid())));
+					response.addCookie(new Cookie("email", user.getEmail()));
+					response.addCookie(new Cookie("fullname", user
+							.getFullname()));
+
+					user.setPassword("");
+					ObjectWriter ow = new ObjectMapper().writer()
+							.withDefaultPrettyPrinter();
+					String json = ow.writeValueAsString(user);
+					response.getWriter().println(json);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+
 			}
-			
+			System.out.println("end login:");
+
 		}
 
 	}
