@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import edu.mum.utils.PostType;
 
 @Entity
 @Table(name="posts")
