@@ -14,6 +14,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.transform.ResultTransformer;
 import org.hibernate.transform.RootEntityResultTransformer;
 
+import edu.mum.models.Post;
 import edu.mum.models.User;
 import edu.mum.utils.HibernateUtil;
 
@@ -54,7 +55,6 @@ public class UserService {
 	 * @param passmd5
 	 * @return
 	 */
-	@SuppressWarnings("finally")
 	public User checkUser(String email, String passmd5) {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = null;
@@ -115,6 +115,7 @@ public class UserService {
 
 	/**
 	 * Get User by Email
+	 * 
 	 * @param email
 	 * @return
 	 */
@@ -126,6 +127,29 @@ public class UserService {
 			transaction = session.beginTransaction();
 			SQLQuery query = session.createSQLQuery("from User where email='"
 					+ email + "'  ");
+			List<User> results = query.list();
+			if (results.size() > 0) {
+				user = results.get(0);
+			}
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return user;
+	}
+
+	 
+
+	public User getUserByUserId(int userId) {
+		Session session = HibernateUtil.getSession();
+		Transaction transaction = null;
+		User user = null;
+		try {
+			transaction = session.beginTransaction();
+			SQLQuery query = session.createSQLQuery("from User where userid='"
+					+ userId + "'  ");
 			List<User> results = query.list();
 			if (results.size() > 0) {
 				user = results.get(0);
