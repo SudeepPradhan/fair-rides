@@ -58,6 +58,7 @@ public class CommentController extends HttpServlet {
 		if (comment2.getCommentid() > 0) {
 			Map<String, String> map = new HashMap<>();
 			map.put("error", "");
+			map.put("lc", String.valueOf(comment2.getCommentid()));
 			map.put("message", "Successfully saved comment");
 			ObjectWriter ow = new ObjectMapper().writer()
 					.withDefaultPrettyPrinter();

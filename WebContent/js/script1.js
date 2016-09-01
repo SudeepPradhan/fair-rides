@@ -131,6 +131,9 @@ $(document).ready(function() {
 			"data" : data
 		}).success(function(res){
  			if(res != null){
+ 				var data = JSON.parse(res);
+ 				$(".latestdata")
+ 	 			.attr("data-lo",data.postid);
  				myModal.modal("hide");
 				$(".alert-success").show("slow").html("Successfully posted offer.");
 				$.ajax("/project/content", {}).success(function(out){output.html(out);});
@@ -146,6 +149,9 @@ $(document).ready(function() {
 			"data" : data
 		}).success(function(res){
  			if(res != null){
+ 				var data = JSON.parse(res);
+ 				$(".latestdata")
+ 	 			.attr("data-la",data.postid);
  				myModal.modal("hide");
 				$(".alert-success").show("slow").html("Successfully posted request.");
 				$.ajax("/project/content", {}).success(function(out){output.html(out);
@@ -166,8 +172,11 @@ $(document).ready(function() {
  				"data" : {"comment":comment,"postid":postid}
  			}).success(function(res){
  	 			if(res != null){
+ 	 				var data = JSON.parse(res);
   					$(".alert-success").show("slow").html("Successfully added comment.");
   					elem.prepend('<div class="comments"><q><span>'+comment+'</span></q><span class="author"> by - '+ $.cookie('fullname')+'</span></div>');
+  					$(".latestdata")
+  		 			.attr("data-lc",data.lc);
  				}
  			});
  	         
@@ -186,11 +195,13 @@ $(document).ready(function() {
 				"data" : {"postid":postid}
 			}).success(function(res){
 	 			if(res != null){
+	 				var data = JSON.parse(res);
  					$(".alert-success").show("slow").html("Successfully added like.");
  					var nc = parseInt(elemCount.text())+1;
  		  			 $(self).replaceWith('<span class="like pull-left"> <span class="likeCount">'+nc+'</span></span>');
  		  			 $(self).prop('disabled', true);
-
+ 		  			$(".latestdata")
+ 		 			.attr("data-ll",data.ll);
  				}
 			});
 	         
