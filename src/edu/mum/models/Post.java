@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
  
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -34,10 +36,12 @@ public class Post {
 	private Date dateupdated;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "post")
+	@OrderBy("commentid desc")  
 	private List<Comment> comments;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "post", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
+	@OrderBy("likeid desc")  
 	private List<Like> likes;
 
 	public Post() {

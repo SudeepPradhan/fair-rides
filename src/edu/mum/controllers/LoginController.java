@@ -39,9 +39,6 @@ public class LoginController extends HttpServlet {
 						GeneralUtil.getEncryptedPassword(pass));
 				System.out.println(user);
 				if (user != null) {
-
-					System.out.println("USER:::" + user.getEmail());
-
 					HttpSession session = request.getSession();
 					session.setAttribute("userid", user.getUserid());
 					session.setAttribute("email", user.getEmail());
@@ -64,8 +61,7 @@ public class LoginController extends HttpServlet {
 				e.printStackTrace();
 
 			}
-			System.out.println("end login:");
-
+ 
 		}
 
 	}

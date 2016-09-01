@@ -2,16 +2,12 @@ package edu.mum.services;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import edu.mum.models.Comment;
 import edu.mum.models.Post;
-import edu.mum.models.User;
 import edu.mum.utils.HibernateUtil;
 
 public class PostService {
@@ -69,6 +65,34 @@ public class PostService {
 			}
 			transaction.commit();
 		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return post;
+	}
+
+	/**
+	 * GET LAST POST
+	 * @return
+	 */
+	public Post getLastPost(int posttype) {
+		Session session = sf.getCurrentSession();
+		Transaction transaction = null;
+		Post post = null;List<Post> posts = null;
+		try {
+			transaction = session.getTransaction();
+			transaction.begin();
+			Query query = session.createQuery("FROM Post where posttype="+posttype+" ORDER BY postid DESC");
+			query.setMaxResults(1);
+			
+			posts = query.list();
+			if(posts.size()>0){
+				post=posts.get(0);
+			}
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 			if (transaction != null) {
 				transaction.rollback();
 			}
