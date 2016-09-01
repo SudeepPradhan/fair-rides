@@ -96,13 +96,16 @@ if($.cookie('email') == undefined && $.cookie('email') == null){
 				var google;
 				var geocoder;
 				var gettingData = false;
+				var address;
 				var openWeatherMapKey = "521a1b7b3f1b8d18fa44380c06bcc261"
 				function initialize(addr) {
 					var infowindow = new google.maps.InfoWindow();
 					var mapOptions = {
 						zoom : 2
 					};
-					var address = addr || "fairfield,ia";
+					var uaddr = $.cookie('city')+','+$.cookie('state');
+					var uzipcode = $.cookie('zipcode');
+					address = addr || uaddr || uzipcode || "fairfield,ia";
 					var geocoder = new google.maps.Geocoder();
 					geocoder.geocode({
 						'address' : address
@@ -245,7 +248,7 @@ if($.cookie('email') == undefined && $.cookie('email') == null){
 					});
 				};
 				//google.maps.event.addDomListener(window, 'load', initialize);
-
+ 				
 				$("#btnDestination").click(function() {
 					var address = $("#searchDestination").val();
 					initialize(address);

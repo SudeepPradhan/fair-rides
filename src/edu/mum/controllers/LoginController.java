@@ -52,6 +52,12 @@ public class LoginController extends HttpServlet {
 					response.addCookie(new Cookie("email", user.getEmail()));
 					response.addCookie(new Cookie("fullname", user
 							.getFullname()));
+					response.addCookie(new Cookie("city", user
+							.getCity()));
+					response.addCookie(new Cookie("state", user
+							.getState()));
+					response.addCookie(new Cookie("zipcode", String.valueOf(user
+							.getZipcode())));
 
 					user.setPassword("");
 					ObjectWriter ow = new ObjectMapper().writer()
