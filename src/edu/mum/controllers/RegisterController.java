@@ -6,9 +6,11 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -62,11 +64,24 @@ public class RegisterController extends HttpServlet {
 
 				User user2 = userService.saveUser(user);
 
+				HttpSession session = request.getSession();
+				session.setAttribute("userid", user2.getUserid());
+				session.setAttribute("email", user2.getEmail());
+				session.setAttribute("fullname", user2.getFullname());
+
+				response.addCookie(new Cookie("userid", String.valueOf(user2
+						.getUserid())));
+				response.addCookie(new Cookie("email", user2.getEmail()));
+				response.addCookie(new Cookie("fullname", user2
+						.getFullname()));
+
+				user.setPassword("");
+				
 				if (user2.getUserid() > 0) {
 					request.setAttribute("message", "");
 					ObjectWriter ow = new ObjectMapper().writer()
 							.withDefaultPrettyPrinter();
-					String json = ow.writeValueAsString(user);
+					String json = ow.writeValueAsString(user2);
 					response.getWriter().println(json);
 				}
 			}

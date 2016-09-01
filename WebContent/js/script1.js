@@ -23,49 +23,49 @@ $(document).ready(function() {
 		});
 	});
 
+	
+
+	function responseDisplay(res,msg){
+		if(res != null){
+			var response = JSON.parse(res);
+			if(response.email != null){
+				myModal.modal("hide");
+				$(".alert-success").fadeIn("slow").html(msg);
+				setTimeout(function(){
+					$(".alert-success").fadeOut("slow");
+				},5000);
+				$.ajax("/project/content", {}).done(function(out){output.html(out);});
+			}
+		}
+	}
+	
 	$(document).delegate("#loginSubmit", "click", function() {
  		var data = Rides.getSerializedObject("#login");
 		$.ajax("/project/login", {
 			"type" : "post",
 			"data" : data
 		}).success(function(res){
-			if(res != null){
-				var response = JSON.parse(res);
-				if(response.email != null){
-					myModal.modal("hide");
-					$(".alert-success").fadeIn("slow").html("Successfully logged in.");
-					setTimeout(function(){
-						$(".alert-success").fadeOut("slow");
-					},5000);
-					$.ajax("/project/content", {}).success(function(out){output.html(out);});
-				}
-			}
+			
+			responseDisplay(res,'Successfully logged in.');
+			
 		});
 	});
-
+	
+	
 	$(document).delegate("#registerSubmit", "click", function() {
-		var data = Rides.getSerializedObject("#register");
+ 		var data = Rides.getSerializedObject("#register");
 		$.ajax("/project/register", {
 			"type" : "post",
 			"data" : data
-		}).success(function(res){
-			if(res != null){
-				var response = JSON.parse(res);
-				if(response.message != null){
-					$(".alert-success").show("slow").html(response.message);
-				}
-				if(response.email != null){
-					myModal.modal("hide");
-					$(".alert-success").fadeIn("slow").html("Successfully registered and logged in.");
-					setTimeout(function(){
-						$(".alert-success").fadeOut("slow");
-					},5000);
-					$.ajax("/project/content", {}).success(function(out){output.html(out);});
-				}
-			}
+		}).done(function(res){
+			
+			responseDisplay(res,'Successfully registered and logged in.');
+			
 		});
-
 	});
+	
+	
+	 
 	
 	
 	$(document).delegate("#postrideForm", "click", function() { 

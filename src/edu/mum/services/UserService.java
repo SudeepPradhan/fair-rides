@@ -20,8 +20,10 @@ import edu.mum.utils.HibernateUtil;
 
 public class UserService {
 
+	private SessionFactory sf;
+	
 	public UserService() {
-
+		this.sf=HibernateUtil.getSessionFactory();
 	}
 
 	/**
@@ -31,7 +33,7 @@ public class UserService {
 	 * @return
 	 */
 	public User saveUser(User user) {
-		Session session = HibernateUtil.getSession();
+		Session session = sf.openSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -56,7 +58,7 @@ public class UserService {
 	 * @return
 	 */
 	public User checkUser(String email, String passmd5) {
-		Session session = HibernateUtil.getSession();
+		Session session = sf.openSession();
 		Transaction transaction = null;
 		User user = null;
 		try {
@@ -65,8 +67,10 @@ public class UserService {
 			transaction.begin();
 			@SuppressWarnings("unchecked")
 			List<User> users = session.createQuery(
-					"from User where email='" + email + "' AND password='"
-							+ passmd5 + "'").list();
+					"from User where email=:email AND password=:password ")
+					.setString("email", email)
+					.setString("password", passmd5)
+					.list();
 			System.out.println("user: " + users.size());
 			if (null != users && users.size() > 0) {
 				user = users.get(0);
@@ -90,7 +94,7 @@ public class UserService {
 	 * @return
 	 */
 	public User getUser(String email, String passmd5) {
-		Session session = HibernateUtil.getSession();
+		Session session = sf.openSession();
 		Transaction transaction = null;
 		User user = null;
 		try {
@@ -120,7 +124,7 @@ public class UserService {
 	 * @return
 	 */
 	public User getUserByEmail(String email) {
-		Session session = HibernateUtil.getSession();
+		Session session = sf.openSession();
 		Transaction transaction = null;
 		User user = null;
 		try {
@@ -144,7 +148,7 @@ public class UserService {
 	 
 
 	public User getUserByUserId(int userId) {
-		Session session = HibernateUtil.getSession();
+		Session session = sf.openSession();
 		Transaction transaction = null;
 		User user = null;
 		try {
