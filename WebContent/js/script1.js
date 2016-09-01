@@ -17,6 +17,14 @@ $(document).ready(function() {
 		});
 	});
 
+	$(document).delegate("#updateProfile", "click", function() {
+		myModal.modal("show");
+		$.ajax("/project/register", {}).success(function(data) {
+			$(".modal-title").text("Profile Page");
+			$(".modal-body").html(data);
+		});
+	});
+	
 	$(document).delegate("#loginForm", "click", function() {
 		myModal.modal("show");
 		$.ajax("/project/login", {}).success(function(data) {

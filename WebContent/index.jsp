@@ -50,7 +50,7 @@
 						aria-expanded="true">Options <span
 							class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="">Update Profile <span
+							<li><a href="#" id="updateProfile">Update Profile <span
 									class="glyphicon glyphicon-user"></span></a></li>
 							<li><a href="javascript:;" id="logoutBtn">Logout <span
 									class="glyphicon glyphicon-remove-circle"></span></a></li>
