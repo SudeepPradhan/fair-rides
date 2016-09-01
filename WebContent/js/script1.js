@@ -33,7 +33,10 @@ $(document).ready(function() {
 				var response = JSON.parse(res);
 				if(response.email != null){
 					myModal.modal("hide");
-					$(".alert-success").show("slow").html("Successfully logged in.");
+					$(".alert-success").fadeIn("slow").html("Successfully logged in.");
+					setTimeout(function(){
+						$(".alert-success").fadeOut("slow");
+					},5000);
 					$.ajax("/project/content", {}).success(function(out){output.html(out);});
 				}
 			}
@@ -53,7 +56,10 @@ $(document).ready(function() {
 				}
 				if(response.email != null){
 					myModal.modal("hide");
-					$(".alert-success").show("slow").html("Successfully registered and logged in.");
+					$(".alert-success").fadeIn("slow").html("Successfully registered and logged in.");
+					setTimeout(function(){
+						$(".alert-success").fadeOut("slow");
+					},5000);
 					$.ajax("/project/content", {}).success(function(out){output.html(out);});
 				}
 			}
@@ -135,7 +141,10 @@ $(document).ready(function() {
  				$(".latestdata")
  	 			.attr("data-lo",data.postid);
  				myModal.modal("hide");
-				$(".alert-success").show("slow").html("Successfully posted offer.");
+				$(".alert-success").fadeIn("slow").html("Successfully posted offer.");
+				setTimeout(function(){
+					$(".alert-success").fadeOut("slow");
+				},5000);
 				$.ajax("/project/content", {}).success(function(out){output.html(out);});
  			}
 		});
@@ -153,7 +162,10 @@ $(document).ready(function() {
  				$(".latestdata")
  	 			.attr("data-la",data.postid);
  				myModal.modal("hide");
-				$(".alert-success").show("slow").html("Successfully posted request.");
+				$(".alert-success").fadeIn("slow").html("Successfully posted request.");
+				setTimeout(function(){
+					$(".alert-success").fadeOut("slow");
+				},5000);
 				$.ajax("/project/content", {}).success(function(out){output.html(out);
 				});
  				 
@@ -173,7 +185,10 @@ $(document).ready(function() {
  			}).success(function(res){
  	 			if(res != null){
  	 				var data = JSON.parse(res);
-  					$(".alert-success").show("slow").html("Successfully added comment.");
+  					$(".alert-success").fadeIn("slow").html("Successfully added comment.");
+  					setTimeout(function(){
+						$(".alert-success").fadeOut("slow");
+					},5000);
   					elem.prepend('<div class="comments"><q><span>'+comment+'</span></q><span class="author"> by - '+ $.cookie('fullname')+'</span></div>');
   					$(".latestdata")
   		 			.attr("data-lc",data.lc);
@@ -196,7 +211,10 @@ $(document).ready(function() {
 			}).success(function(res){
 	 			if(res != null){
 	 				var data = JSON.parse(res);
- 					$(".alert-success").show("slow").html("Successfully added like.");
+ 					$(".alert-success").fadeIn("slow").html("Successfully added like.");
+ 					setTimeout(function(){
+						$(".alert-success").fadeOut("slow");
+					},5000);
  					var nc = parseInt(elemCount.text())+1;
  		  			 $(self).replaceWith('<span class="like pull-left"> <span class="likeCount">'+nc+'</span></span>');
  		  			 $(self).prop('disabled', true);
@@ -207,10 +225,11 @@ $(document).ready(function() {
 	         
 	 });
  	 
- 	
- 	//auto post notification
- 	setInterval(checkoplc,1000);
- 	
+ 	//check if user logged in then make 1 sec call to server if they changed anyting
+ 	if($.cookie('email') !== undefined && $.cookie('email') != null){ 
+ 		//auto post notification
+ 		setInterval(checkoplc,1000);
+ 	}
  	function checkoplc(){
  		var lo = $(".latestdata").attr("data-lo"); //latest offer id
  		var la = $(".latestdata").attr("data-la"); //latest ask id

@@ -30,6 +30,7 @@ var Rides = (function() {
 		auth : function() {
 			var email = this.getCookie("email");
 			if (email) {
+				$(".navbar-right").removeClass("hide");
 				// just normal behaviour
 				$.ajax(appPath + "/content", {}).success(contentSucFunc).error(
 						errorFunc);
@@ -40,6 +41,7 @@ var Rides = (function() {
 				// if not then bring register / sign in
 				$.ajax(appPath + "/login", {}).success(loginSucFunc).error(
 						errorFunc);
+				$(".navbar-right").addClass("hide");
 			}
 		},
 		getSerializedObject : function(selector) {
@@ -50,18 +52,7 @@ var Rides = (function() {
 			return data;
 		},
 		getCookie : function(cname) {
-			var name = cname + "=";
-			var ca = document.cookie.split(';');
-			for (var i = 0; i < ca.length; i++) {
-				var c = ca[i];
-				while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-				}
-				if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-				}
-			}
-			return "";
+			 return $.cookie(cname);
 		},
 		cleanCookies : function() {
 			for (var it in $.cookie()) $.removeCookie(it);

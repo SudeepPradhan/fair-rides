@@ -12,7 +12,13 @@
 <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script>
+if($.cookie('email') == undefined && $.cookie('email') == null){ 
+		location.href = './';
+	}
+</script>
 </head>
 <body>
 	<!-- Fixed navbar -->
@@ -244,6 +250,9 @@
 					var address = $("#searchDestination").val();
 					initialize(address);
 				});
+				
+				
+				
 			</script>
 
 
