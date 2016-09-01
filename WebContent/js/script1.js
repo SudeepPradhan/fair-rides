@@ -35,12 +35,23 @@ $(document).ready(function() {
 					$(".alert-success").fadeOut("slow");
 				},5000);
 				$.ajax("/project/content", {}).done(function(out){output.html(out);});
+			}else{
+				$(".alert-danger").removeClass("hide").fadeIn("slow").html(response.message);
+				setTimeout(function(){
+					$(".alert-danger").addClass("hide").fadeOut("slow");
+				},5000);
 			}
 		}
 	}
 	
 	$(document).delegate("#loginSubmit", "click", function() {
  		var data = Rides.getSerializedObject("#login");
+ 		if(data.email == "" || data.password == ""){
+ 			$(".alert-danger").removeClass("hide").fadeIn("slow").html("Please provide email and password");
+			setTimeout(function(){
+				$(".alert-danger").addClass("hide").fadeOut("slow");
+			},5000);
+ 		}else{ 
 		$.ajax("/project/login", {
 			"type" : "post",
 			"data" : data
@@ -49,6 +60,7 @@ $(document).ready(function() {
 			responseDisplay(res,'Successfully logged in.');
 			
 		});
+ 		}
 	});
 	
 	

@@ -3,6 +3,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
+<div class="alert popalert alert-danger hide">
+	<strong>Success!</strong>
+</div>
 	
 <form class="form-horizontal" id="register" onsubmit="return validate()" method="post">
 		<div class="form-group">

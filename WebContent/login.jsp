@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<div class="alert popalert alert-danger hide">
+	<strong>Success!</strong>
+</div>
+
 <form class="form-horizontal" id="login">
 	<div class="form-group">
 		<label for="inputEmail3" class="col-sm-2 control-label">Email</label>

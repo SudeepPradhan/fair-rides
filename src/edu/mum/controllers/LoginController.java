@@ -1,6 +1,8 @@
 package edu.mum.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -55,15 +58,31 @@ public class LoginController extends HttpServlet {
 							.withDefaultPrettyPrinter();
 					String json = ow.writeValueAsString(user);
 					response.getWriter().println(json);
+				}else{
+					errorMessage(response,"Sorry ! unable to retrieve user information.");
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
-
+				errorMessage(response,"Sorry ! unable to retrieve user information.");
 			}
  
+		}else{
+			errorMessage(response,"Sorry you are not passing any user information");
 		}
 
+	}
+
+	private void errorMessage(HttpServletResponse response, String msg)
+			throws JsonProcessingException, IOException {
+		Map<String, String> map = new HashMap<>();
+		map.put("error", "Unauthorized");
+		map.put("message",
+				msg);
+		ObjectWriter ow = new ObjectMapper().writer()
+				.withDefaultPrettyPrinter();
+		String json = ow.writeValueAsString(map);
+		response.getWriter().println(json);
 	}
 
 }
