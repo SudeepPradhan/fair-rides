@@ -1,7 +1,6 @@
 package edu.mum.controllers;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,20 +9,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import edu.mum.models.Comment;
+import edu.mum.models.Like;
 import edu.mum.models.Post;
-import edu.mum.models.User;
 import edu.mum.services.CommentService;
+import edu.mum.services.LikeService;
 import edu.mum.services.PostService;
-import edu.mum.services.UserService;
 
-@WebServlet("/comment")
-public class CommentController extends HttpServlet {
+@WebServlet("/notification")
+public class NotificationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request,
@@ -33,37 +31,29 @@ public class CommentController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		UserService us = new UserService();
 		PostService ps = new PostService();
 		CommentService cs = new CommentService();
-		Comment comment = null;
-		HttpSession session = request.getSession();
+		LikeService ls = new LikeService();
 
-		int userId = (int) session.getAttribute("userid");
-		int postid = Integer.valueOf(request.getParameter("postid"));
-		
- 		
-		User user = us.getUserByUserId(userId);
-		Post post = ps.getPost(postid);
-		if (comment == null) {
-			comment = new Comment();
-			comment.setComment(request.getParameter("comment"));
-			comment.setDatecreated(new Date());
-			comment.setUser(user);
-			comment.setPost(post);
-		}
-
-		Comment comment2 = cs.saveComment(comment);
-
-		if (comment2.getCommentid() > 0) {
+		Post post = ps.getLastPost(1); // 1 offer
+		Post post2 = ps.getLastPost(2); // 2 ask
+		Comment comment = cs.getLastComment();
+		Like like = ls.getLastLike();
+		if (post != null && post2 != null) {
 			Map<String, String> map = new HashMap<>();
-			map.put("error", "");
-			map.put("message", "Successfully saved comment");
+			map.put("lo", String.valueOf(post.getPostid()));
+			map.put("la", String.valueOf(post2.getPostid()));
+			if (comment != null) {
+				map.put("lc", String.valueOf(comment.getCommentid()));
+			}
+			if (like != null) {
+				map.put("ll", String.valueOf(like.getLikeid()));
+			}
+
 			ObjectWriter ow = new ObjectMapper().writer()
 					.withDefaultPrettyPrinter();
 			String json = ow.writeValueAsString(map);
 			response.getWriter().println(json);
-	 
 		}
 
 	}

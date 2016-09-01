@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome to FairRides</title>
+<title>FairRides</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -62,6 +62,10 @@
 
 		<div class="jumbotron">
 
+			<div class="stream-conainer hide">
+				 new notification
+			</div>
+
 			<div class="alert homealert alert-success">
 				<strong>Success!</strong>
 			</div>
@@ -106,7 +110,9 @@
 
 	<script type="text/javascript" src="js/rides.js"></script>
 	<script type="text/javascript" src="js/script1.js"></script>
-
+	
+	<span class="latestdata" data-lo="0" data-la="0" data-lc="0" data-ll="0"></span>
+	
 	<script>
 		//load jQuery
 		$(document).ready(function() {
