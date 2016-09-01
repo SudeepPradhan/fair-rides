@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="ct" uri="/WEB-INF/customDate.tld"%>
 <div>
 
 	<!-- Nav tabs -->
@@ -27,10 +27,16 @@
 			<div class="posts">
 
 				<c:forEach var="post" items="${posts}">
-					<div class="post_item" data-post-id="${post.postid}" data-post-type="1">
+					<div class="post_item" data-post-id="${post.postid}"
+						data-post-type="1">
 						<h3>
 							<span class="pull-left">${post.post}</span> <span
-								class="pull-right author"> by - ${post.user.fullname} </span>
+								class="pull-right author"> <ct:dateDisplay
+									createdDate="${post.datecreated}"
+									updatedDate="${post.dateupdated}" /> 
+									
+									by - ${post.user.fullname}
+							</span>
 						</h3>
 
 						<div class="comments"></div>
@@ -68,11 +74,16 @@
 					<fmt:formatDate value="${ask.datecreated}" var="datecreated"
 						type="date" pattern="MM/dd/yyyy hh:mm a" />
 
-					<div class="ask_item" data-post-id="${ask.postid}" data-post-type="2">
+					<div class="ask_item" data-post-id="${ask.postid}"
+						data-post-type="2">
 						<h3>
 							<span class="pull-left">${ask.post}</span> <span
-								class="pull-right author"> by - ${ask.user.fullname} at -
-								${datecreated} </span>
+								class="pull-right author">
+								<ct:dateDisplay
+									createdDate="${ask.datecreated}"
+									updatedDate="${ask.dateupdated}" /> 
+									
+								 by - ${ask.user.fullname}  </span>
 						</h3>
 						<div class="comments"></div>
 						<c:forEach var="comment" items="${ask.comments}">

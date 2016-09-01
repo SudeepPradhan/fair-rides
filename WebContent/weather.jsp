@@ -59,6 +59,8 @@
 
 		<div class="jumbotron">
 
+			<%@ include file="notification.jsp"%>
+
 			<div class="well weatherJumbotron">
 				<h2>Weather Service</h2>
 
