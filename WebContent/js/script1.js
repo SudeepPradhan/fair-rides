@@ -56,9 +56,11 @@ $(document).ready(function() {
 			"type" : "post",
 			"data" : data
 		}).success(function(res){
-			
 			responseDisplay(res,'Successfully logged in.');
-			
+			var response = JSON.parse(res);
+			if(response.email != null){
+				$(".navbar-nav").removeClass("hide");
+			}
 		});
  		}
 	});

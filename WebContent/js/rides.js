@@ -30,7 +30,7 @@ var Rides = (function() {
 		auth : function() {
 			var email = this.getCookie("email");
 			if (email) {
-				$(".navbar-right").removeClass("hide");
+				$(".navbar-nav").removeClass("hide");
 				// just normal behaviour
 				$.ajax(appPath + "/content", {}).success(contentSucFunc).error(
 						errorFunc);
@@ -41,7 +41,7 @@ var Rides = (function() {
 				// if not then bring register / sign in
 				$.ajax(appPath + "/login", {}).success(loginSucFunc).error(
 						errorFunc);
-				$(".navbar-right").addClass("hide");
+				$(".navbar-nav").addClass("hide");
 			}
 		},
 		getSerializedObject : function(selector) {
