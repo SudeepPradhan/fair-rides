@@ -82,7 +82,6 @@
 								<ct:dateDisplay
 									createdDate="${ask.datecreated}"
 									updatedDate="${ask.dateupdated}" /> 
-									
 								 by - ${ask.user.fullname}  </span>
 						</h3>
 						<div class="comments"></div>

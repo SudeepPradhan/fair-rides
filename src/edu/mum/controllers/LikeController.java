@@ -60,6 +60,7 @@ public class LikeController extends HttpServlet {
 		if (like2.getLikeid() > 0) {
 			Map<String, String> map = new HashMap<>();
 			map.put("error", "");
+			map.put("ll", String.valueOf(like2.getLikeid()));
 			map.put("message", "Successfully saved like");
 			ObjectWriter ow = new ObjectMapper().writer()
 					.withDefaultPrettyPrinter();
