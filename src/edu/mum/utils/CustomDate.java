@@ -16,7 +16,7 @@ public class CustomDate extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 	    JspWriter out = getJspContext().getOut();
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		SimpleDateFormat outFormat = new SimpleDateFormat("MM/dd/yyyy ha");
 		
 		try {
