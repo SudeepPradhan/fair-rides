@@ -20,11 +20,11 @@ body {
 	border-bottom: 1px dotted #CECECE;
 }
 
-.post_item span.btn-mini, .ask_item span.btn-mini {
+.post_item span.btn-mini,.ask_item span.btn-mini {
 	margin-bottom: 2px !important;
 }
 
-.likebtn, .like {
+.likebtn,.like {
 	display: block;
 	width: 70px;
 	height: 22px;
@@ -162,12 +162,19 @@ q:before {
 	text-align: right;
 }
 
-.stream-conainer{
-	padding:3px;
+.stream-conainer {
+	padding: 3px;
 	background: #EBF4FB;
-	color:#3B94D9;
-	text-align:center;
-	font-weight:bold;
-	margin-bottom:5px;
-	cursor:pointer;
+	color: #3B94D9;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.progress-bar {
+	height: 20px;
+	width: 100% !important;
+    margin: 15px;
+    border-radius: 5px;
 }

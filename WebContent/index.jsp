@@ -14,6 +14,8 @@
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.jscroll.js"></script>
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </head>
 <body>
@@ -37,7 +39,9 @@
 					<li><a href="">Support</a></li>
 					<li><a href="weather" title="Weather Service">Weather
 							Service</a></li>
-
+					<li>
+						
+					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 
@@ -72,7 +76,10 @@
 
 
 
-
+			
+			<div class="progress-bar hide progress-bar-striped active"
+							role="progressbar" aria-valuenow="100" aria-valuemin="0"
+							aria-valuemax="100" style="width: 100%"></div>
 			<footer class="footer">
 				<p>&copy; 2016 WAP2016AugGroup7, Inc.</p>
 			</footer>

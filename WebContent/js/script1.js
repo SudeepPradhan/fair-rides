@@ -7,6 +7,8 @@ $(document).ready(function() {
 	var mode  = "json";
 	var myModal = $("#myModal");
 	var output  = $("#output");
+	 
+	
 	// bring form to the front
 	$(document).delegate("#registerForm", "click", function() {
 		$.ajax("/project/register", {}).success(function(data) {
@@ -242,7 +244,7 @@ $(document).ready(function() {
  	//check if user logged in then make 1 sec call to server if they changed anyting
  	if($.cookie('email') !== undefined && $.cookie('email') != null){ 
  		//auto post notification
- 		setInterval(checkoplc,1000);
+ 		setInterval(checkoplc,2000);
  	}
  	function checkoplc(){
  		var lo = $(".latestdata").attr("data-lo"); //latest offer id
@@ -280,7 +282,47 @@ $(document).ready(function() {
  		$(document).prop("title","FairRides");	//change title to old one
  		$.ajax("/project/content", {}).success(function(out){output.html(out);});
  	});
- 	 
+ 	var page=0;
+ 	$(window).scroll(function() {
+ 	    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+ 	           page++;
+ 	           $(".progress-bar").ajaxStart(function(){
+ 	        	 $(this).removeClass("hide");  
+ 	           }).ajaxError(function(){
+ 	        	   $(this).addClass("hide");
+ 	           })
+ 	          $.ajax("/project/content", {"type":"GET","data":{
+ 	        	  "page":page
+ 	          }}).done(function(out){
+ 	        	  if(out.length>0){ 
+ 	        	  $.each(out,function(i,obj){
+ 	        		  var ot = '<div class="post_item" data-post-id="'+obj.postid+'" >'
+ 	        				   + '<h3><span class="pull-left">'+obj.post+'</span><span class="pull-right author">'
+ 	        				   + ' created - '+ obj.datecreated  
+ 	        				   + ' updated - '+ obj.dateupdated			
+ 	        				   + ' by - '+ obj.user.fullname +'</span></h3><div class="comments"></div>'
+ 	        				  
+ 	        				  ;
+ 	        		  $.each(obj.comments,function(j,cm){
+ 	        			 ot +=  '<div class="comments"><q><span>'+cm.comment+'</span></q><span class="author">by - '+cm.user.fullname+'</span>';
+       				     ot +=  '</div>';
+ 	        		  });
+ 	        		 
+ 	        		    ot += '<div class="socials" data-post-id="'+obj.postid+'">';
+						ot += '<a class="likebtn pull-left"><span class="likeCount">'+obj.likes.length+'</span></a>';
+						ot += '<textarea rows="1" cols="60" class="commentbox" placeholder="Write a comment"></textarea></div>';
+ 	        		  
+ 	        		  ot +=  '</div>';
+ 	        		  output.append(ot);
+ 	        	  });
+ 	        	  }
+ 	        	  //output.append(out);
+ 	        	 
+ 	        });
+ 	          
+ 	    }
+ 	});
  	
+ 	 
  	 
 });

@@ -16,7 +16,7 @@ public class ContentService {
 		this.sf=HibernateUtil.getSessionFactory();
 	}
 
-	public List<Post> getPosts(int postType, int size) {
+	public List<Post> getPosts(int postType,int offset, int size) {
 		Session session = sf.getCurrentSession();
 		Transaction transaction = null;
 		List<Post> posts = null;
@@ -26,6 +26,7 @@ public class ContentService {
 			transaction.begin();
 			
 			Query query = session.createQuery("FROM Post where posttype="+postType+" ORDER BY postid DESC");
+			query.setFirstResult(offset);
 			query.setMaxResults(size);
 			
 			posts = query.list();

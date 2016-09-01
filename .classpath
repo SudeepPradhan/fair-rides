@@ -29,5 +29,6 @@
 	<classpathentry exported="true" kind="lib" path="/Users/masudurrahman/fair-rides/WebContent/WEB-INF/lib/hibernate-annotations-3.3.0.ga.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/masudurrahman/fair-rides/WebContent/WEB-INF/lib/jackson-databind-2.1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/masudurrahman/fair-rides/WebContent/WEB-INF/lib/jackson-core-2.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/masudurrahman/fair-rides/WebContent/WEB-INF/lib/jackson-annotations-2.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
